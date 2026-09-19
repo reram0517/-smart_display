@@ -326,6 +326,14 @@ async function fetchJwaUv(area) {
   return { level, advice: advice || '紫外線対策を確認してください' };
 }
 
+async function fetchPublishedJwaUv() {
+  const response = await fetch('uv.json', { cache: 'no-store' });
+  if (!response.ok) throw new Error('Published UV data request failed');
+  const data = await response.json();
+  if (!data.level) throw new Error('Published UV data was not found');
+  return data;
+}
+
 function yahooForecastDate(dateText) {
   const match = dateText.match(/(\d+)月(\d+)日/);
   if (!match) return new Date();
@@ -644,7 +652,11 @@ async function updateWeather() {
     try {
       data.jwaUv = await fetchJwaUv(area);
     } catch (uvError) {
-      data.jwaUv = null;
+      try {
+        data.jwaUv = await fetchPublishedJwaUv();
+      } catch (publishedUvError) {
+        data.jwaUv = null;
+      }
     }
     try {
       data.hourlyForecast = await fetchHourlyForecast(location);

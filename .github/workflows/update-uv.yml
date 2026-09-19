@@ -1,0 +1,22 @@
+name: Update JWA UV data
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 21 * * *'
+
+permissions:
+  contents: write
+
+jobs:
+  update-uv:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: node .github/scripts/update-uv.mjs
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add uv.json
+          git diff --cached --quiet || git commit -m "Update JWA UV data"
+          git push

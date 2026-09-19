@@ -1,5 +1,5 @@
-const cacheName = 'smart-display-v12';
-const appShell = ['./', './index.html', './style.css?v=20260919-33', './app.js?v=20260920-01', './manifest.json'];
+const cacheName = 'smart-display-v13';
+const appShell = ['./', './index.html', './style.css?v=20260919-33', './app.js?v=20260920-02', './uv.json', './manifest.json'];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(caches.open(cacheName).then((cache) => cache.addAll(appShell)));
