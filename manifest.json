@@ -1,0 +1,18 @@
+{
+  "name": "スマートディスプレイ",
+  "short_name": "スマート表示",
+  "description": "時計と天気を表示するタブレット用スマートディスプレイ",
+  "start_url": "./",
+  "display": "fullscreen",
+  "orientation": "landscape",
+  "background_color": "#0f172a",
+  "theme_color": "#0f172a",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='96' fill='%230f172a'/%3E%3Ccircle cx='256' cy='256' r='170' fill='none' stroke='%2338bdf8' stroke-width='20'/%3E%3Cpath d='M256 145v115l78 52' fill='none' stroke='%23f8fafc' stroke-width='22' stroke-linecap='round'/%3E%3C/svg%3E",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "name": "smart-display-web",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Browser-only smart display web app",
+  "scripts": {
+    "start": "node web-server.js"
+  }
+}

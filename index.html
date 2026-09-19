@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Smart Display</title>
+  <meta name="theme-color" content="#0f172a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css?v=20260919-33">
+</head>
+<body>
+  <div class="container">
+    <section class="clock-panel">
+      <div id="clock-slider" class="clock-slider">
+        <div class="clock-track">
+          <div class="clock-page">
+            <div id="date" class="date">2026/09/17 (木)</div>
+            <div id="clock" class="clock">00:00:00</div>
+            <div class="analog-clock" aria-label="アナログ時計">
+              <span class="clock-number number-12">12</span>
+              <span class="clock-number number-1">1</span>
+              <span class="clock-number number-2">2</span>
+              <span class="clock-number number-3">3</span>
+              <span class="clock-number number-4">4</span>
+              <span class="clock-number number-5">5</span>
+              <span class="clock-number number-6">6</span>
+              <span class="clock-number number-7">7</span>
+              <span class="clock-number number-8">8</span>
+              <span class="clock-number number-9">9</span>
+              <span class="clock-number number-10">10</span>
+              <span class="clock-number number-11">11</span>
+              <span id="hour-hand" class="hand hour-hand"></span>
+              <span id="minute-hand" class="hand minute-hand"></span>
+              <span id="second-hand" class="hand second-hand"></span>
+              <span class="clock-center"></span>
+            </div>
+          </div>
+          <div id="calendar-panel" class="clock-page calendar-page" aria-live="polite" aria-hidden="true">
+            <div class="calendar-heading">
+              <h2 id="calendar-month">カレンダー</h2>
+            </div>
+            <div class="calendar-weekdays" aria-hidden="true"><span>日</span><span>月</span><span>火</span><span>水</span><span>木</span><span>金</span><span>土</span></div>
+            <div id="calendar-days" class="calendar-days"></div>
+          </div>
+        </div>
+      </div>
+      <div class="clock-pagination" aria-hidden="true"><span class="is-active"></span><span></span><small>上下にスライド</small></div>
+    </section>
+
+    <section class="weather-panel" aria-label="天気情報スライダー">
+      <div id="weather-slider" class="weather-slider">
+        <div class="weather-track">
+          <div class="weather-page weather-forecast-page" aria-live="polite">
+            <div class="weather-heading">
+              <div class="weather-heading-main">
+                <div id="weather-location" class="weather-location">天気を取得中...</div>
+                <div id="weather-place" class="weather-place">現在地を取得中...</div>
+              </div>
+              <div id="weather-description" class="weather-description">現在の天気を読み込んでいます</div>
+            </div>
+            <div class="weather-current">
+              <span id="weather-icon" class="weather-icon" aria-hidden="true">--</span>
+              <span id="weather-temperature" class="weather-temperature">--°C</span>
+              <span id="weather-details" class="weather-details"></span>
+            </div>
+            <h2>今後12時間の天気</h2>
+            <div id="hourly-weather" class="hourly-weather">天気を取得中...</div>
+            <h2>今週の天気</h2>
+            <div id="weekly-weather" class="weekly-weather">天気を取得中...</div>
+          </div>
+
+          <div class="weather-page risk-page" aria-label="気象情報">
+            <div class="risk-heading">
+              <div>
+                <p class="eyebrow">JMA / JWA SAFETY MONITOR</p>
+                <h2>気象情報</h2>
+              </div>
+              <span id="risk-updated" class="risk-updated">更新待ち</span>
+            </div>
+            <div class="risk-grid">
+              <article class="risk-card uv-card">
+                <span class="risk-label">UV指数</span>
+                <strong id="uv-index">--</strong>
+                <span id="uv-advice">情報を取得中...</span>
+              </article>
+              <article class="risk-card">
+                <span class="risk-label">台風・荒天</span>
+                <strong id="storm-status">確認中</strong>
+                <span id="storm-detail">風と雨の状況を確認しています</span>
+              </article>
+              <article class="risk-card">
+                <span class="risk-label">前線・雨</span>
+                <strong id="front-status">確認中</strong>
+                <span id="front-detail">降水の見込みを確認しています</span>
+              </article>
+            </div>
+            <div class="hazard-grid">
+              <article class="risk-card hazard-card">
+                <span class="risk-label">土砂災害</span>
+                <strong id="landslide-status">確認中</strong>
+                <span id="landslide-detail">気象庁の発表を確認しています</span>
+              </article>
+              <article class="risk-card hazard-card">
+                <span class="risk-label">洪水</span>
+                <strong id="flood-status">確認中</strong>
+                <span id="flood-detail">気象庁の発表を確認しています</span>
+              </article>
+            </div>
+            <div class="warning-ticker" aria-live="polite">
+              <span class="warning-ticker-label">防災情報</span>
+              <div class="warning-ticker-window"><div id="warning-ticker-track" class="warning-ticker-track">現在地の警報・注意報を確認中...</div></div>
+            </div>
+            <p class="risk-note">気象庁の防災情報と日本気象協会の予報を表示しています。</p>
+          </div>
+
+          <div class="weather-page earthquake-page" aria-label="日本の地震情報">
+            <div class="risk-heading">
+              <div>
+                <p class="eyebrow">EARTHQUAKE MONITOR</p>
+                <h2>日本の最新地震</h2>
+              </div>
+              <span class="risk-updated">防災科研 P2PQuake</span>
+            </div>
+            <div id="earthquake-list" class="earthquake-list">地震情報を取得中...</div>
+            <p class="risk-note">発生時刻の新しい順に表示しています。</p>
+          </div>
+        </div>
+      </div>
+      <div class="weather-pagination"><button id="weather-prev" class="weather-prev" type="button" aria-label="前の画面へ">‹ 前へ</button><span class="is-active" aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span><small>左右にスライド</small><button id="weather-next" class="weather-next" type="button" aria-label="次の画面へ">次へ ›</button></div>
+    </section>
+  </div>
+
+  <script src="app.js?v=20260920-01"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js', { updateViaCache: 'none' }).then((registration) => {
+        registration.update();
+      });
+    }
+  </script>
+</body>
+</html>
